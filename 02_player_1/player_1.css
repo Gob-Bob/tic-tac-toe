@@ -1,0 +1,35 @@
+@keyframes TopToMiddle {
+    0% {
+        transform: translateY(-800%);
+        opacity: 0;
+    }
+    40% {
+        transform: translateY(30%);
+        opacity: 70%;
+    }
+    60% {
+        transform: translateY(0);
+    }
+}
+@keyframes BottomToMiddle {
+    0% {
+        transform: translateY(800%);
+        opacity: 0;
+    }
+    40% {
+        transform: translateY(-30%);
+        opacity: 70%;
+    }
+    60% {
+        transform: translateY(0);
+    }
+}
+@keyframes slideBottomFromMiddle {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(800%);
+        opacity: 0;
+    }
+}
