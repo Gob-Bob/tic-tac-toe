@@ -1,6 +1,6 @@
 (function () {
     const redirect = () => {
-        window.location = "http://127.0.0.1:5500/tic-tac-toe/02_name/name.html"
+        window.location = "http://127.0.0.1:5500/tic-tac-toe/02_player_1/player_1.html"
     }
     const title = document.getElementById('title')
     const button = document.getElementById('startButton')
