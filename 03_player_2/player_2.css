@@ -59,7 +59,7 @@ label {
     margin-bottom: 25px;
 }
 input {
-    animation: 2s ease-in-out 0s 1 BottomToMiddle;
+    animation: 2s ease-in-out 0s 1 TopToMiddle;
     
     border: 0;
     outline: 0;
@@ -72,7 +72,7 @@ input {
     padding: 10px;
 }
 button {
-    animation: 2s ease-in-out 0s 1 BottomToMiddle;
+    animation: 2s ease-in-out 0s 1 TopToMiddle;
     transition-duration: 200ms;
     transition-timing-function: ease-in-out;
     
