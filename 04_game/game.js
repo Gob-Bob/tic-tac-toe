@@ -6,13 +6,23 @@
             return "O"
         }
     }
-    
+
+    let playerMove
     let count = 0
+
+    const checkSpace = (space) => {
+        if (space.textContent == "") {
+            space.textContent = playerMove
+            count++ 
+        }
+    }
+
     const gameButtons = document.querySelectorAll(".game_button")
     gameButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            console.log(checkCountStatus(count))
-            count++
+            playerMove = checkCountStatus(count)
+            console.log(playerMove)
+            checkSpace(button)
         })
     })
 })()
