@@ -71,8 +71,7 @@ body {
     width: 700px;
     height: 700px;
 }
-/* Grid items */
-.game_grid_container>button {
+.game_button {
     animation: 1s ease-in 0s 1 fadeIn;
     
     padding: 10px;
@@ -82,6 +81,6 @@ body {
     transition-duration: .5s;
     transition-timing-function: ease-in-out;
 }
-.game_grid_container>button:hover {
+.game_button:hover {
     background-color: rgb(163, 163, 163);
 }
