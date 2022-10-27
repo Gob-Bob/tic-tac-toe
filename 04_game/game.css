@@ -50,7 +50,7 @@ body {
     font-size: 30px;
     font-weight: 600;
 }
-.restart_button {
+#restart_button {
     animation: 1s ease-in 0s 1 bottomToMiddle;
     
     font-size: 15px;
