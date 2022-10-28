@@ -50,6 +50,33 @@
         totalMovesArray = ["","","","","","","","",""]
     }
 
+    let moveCounter = 0
+    let moveSymbol = ""
+    const checkForWinner = () => {
+        // Iterate through every space in totalMovesArray
+        for (let i = 0; i < totalMovesArray.length; i++) {
+            // If counting variable hits 3
+            if (moveCounter == 3) {
+                // , declare the winner
+                return console.log(`${moveSymbol} player is the winner!`)
+            }
+            // If a player move is encountered
+            if (totalMovesArray[i] == "X" || totalMovesArray[i] == "O") {
+                // If the move is the same as what is stored in memory
+                if (totalMovesArray[i] == moveSymbol) {
+                    // , add a count
+                    moveCounter++
+                }
+                // If the move is NOT the same as what is stored in memory
+                else {
+                    // , reset counter to 1 and store new move into memory variable
+                    moveCounter = 1
+                    moveSymbol = totalMovesArray[i]
+                }
+            }
+        }
+    }
+
     const gameButtons = document.querySelectorAll(".game_button")
     gameButtons.forEach((button) => {
         button.addEventListener("click", () => {
@@ -57,6 +84,7 @@
             checkSpace(button)
             addMoves(gameButtons)
             compareArrays(totalMovesArray, newMovesArray)
+            checkForWinner()
             console.log(totalMovesArray)
         })
     })
@@ -66,5 +94,4 @@
         clearAllMoves(gameButtons)
         console.log(totalMovesArray)
     })
-
 })()
