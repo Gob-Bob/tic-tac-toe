@@ -61,7 +61,7 @@
                 return console.log(`${moveSymbol} player is the winner!`)
             }
             // If a player move is encountered
-            if (totalMovesArray[i] == "X" || totalMovesArray[i] == "O") {
+            if (totalMovesArray[i] != "") {
                 // If the move is the same as what is stored in memory
                 if (totalMovesArray[i] == moveSymbol) {
                     // , add a count
