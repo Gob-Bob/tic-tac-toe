@@ -71,7 +71,7 @@ body {
     width: 700px;
     height: 700px;
 }
-.game_button {
+.game_slot {
     animation: 1s ease-in 0s 1 fadeIn;
     
     padding: 10px;
@@ -81,6 +81,6 @@ body {
     transition-duration: .5s;
     transition-timing-function: ease-in-out;
 }
-.game_button:hover {
+.game_slot:hover {
     background-color: rgb(163, 163, 163);
 }
