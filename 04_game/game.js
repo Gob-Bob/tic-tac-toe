@@ -1,9 +1,3 @@
-// playerFactory (template for creating player objects)
-    // Need to be able to pull player name data from previous pages
-    // Use those names pulled from other JS files to create new players in factory
-    // Player number property
-    // Player symbol property
-
 const playerTemplate = (playerNum, playerName) => {
     if (playerNum == 1) {
         playerSym = 'X'
@@ -14,7 +8,8 @@ const playerTemplate = (playerNum, playerName) => {
 }
 
 const gameBoardMod = (function() {
-
+    
+    // Set up player 1
     const playerOneName = document.getElementById('player-one-name')
     const playerOneDisplayName = document.getElementById('player-one-display-name')
     const playerOneForm = document.getElementById('player-one-form')
@@ -23,7 +18,9 @@ const gameBoardMod = (function() {
         playerOneForm.classList.add('animated')
         playerOneDisplayName.textContent = playerOneName.value
         playerOneDisplayName.classList.add('second-wrapper-animated')
+        const playerOne = playerTemplate(1, playerOneName.value)
     })
+    // Set up player 2
     const playerTwoName = document.getElementById('player-two-name')
     const playerTwoDisplayName = document.getElementById('player-two-display-name')
     const playerTwoForm = document.getElementById('player-two-form')
@@ -32,11 +29,9 @@ const gameBoardMod = (function() {
         playerTwoForm.classList.add('animated')
         playerTwoDisplayName.textContent = playerTwoName.value
         playerTwoDisplayName.classList.add('second-wrapper-animated')
+        const playerTwo = playerTemplate(2, playerTwoName.value)
     })
 
-    const playerOne = playerTemplate(1)
-    const playerTwo = playerTemplate(2)
-    
     const boardObj = {
         board: ['', '', '', '', '', '', '', '', '']
         // Check win function
