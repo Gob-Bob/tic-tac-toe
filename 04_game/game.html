@@ -8,19 +8,26 @@
     <link rel="stylesheet" href="game.css">
 </head>
 <body>
-    <div class="player_turn_status">Player's Turn: #NAME</div>
-    <div class="game_grid_container">
-        <!-- <button id="1x1" class="game_slot"></button>
-        <button id="1x2" class="game_slot"></button>
-        <button id="1x3" class="game_slot"></button>
-        <button id="2x1" class="game_slot"></button>
-        <button id="2x2" class="game_slot"></button>
-        <button id="2x3" class="game_slot"></button>
-        <button id="3x1" class="game_slot"></button>
-        <button id="3x2" class="game_slot"></button>
-        <button id="3x3" class="game_slot"></button> -->
+    <div class="top-wrapper">
+        <fieldset id="player-one-form">
+            <label for="player-one-name" id="title">Player 1</label>
+            <input type="text" id="player-one-name" name="player-one-name" placeholder="Name">
+            <button type="submit" id="player-one-submit-button"><img src="/tic-tac-toe/check.png" alt="Checkmark"></button>
+        </fieldset>
+        <div class="player_turn_status">Player's Turn: </div>
+        <fieldset id="player-two-form">
+            <label for="player-two-name" id="title">Player 2</label>
+            <input type="text" id="player-two-name" name="player-two-name" placeholder="Name">
+            <button type="submit" id="player-two-submit-button"><img src="/tic-tac-toe/check.png" alt="Checkmark"></button>
+        </fieldset>
     </div>
+    <div id="second-wrapper">
+        <div id="player-one-display-name"></div>
+        <div id="player-two-display-name"></div>
+    </div>
+    <div class="game_grid_container"></div>
     <button id="restart_button">Restart</button>
+    <script src="player_1.js"></script>
     <script src="game.js"></script>
 </body>
 </html>

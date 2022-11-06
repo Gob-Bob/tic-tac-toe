@@ -4,17 +4,36 @@
     // Player number property
     // Player symbol property
 
-const playerTemplate = (playerNum) => {
+const playerTemplate = (playerNum, playerName) => {
     if (playerNum == 1) {
         playerSym = 'X'
     } else {
         playerSym = 'O'
     }
-    return {playerNum, playerSym}
+    return {playerNum, playerSym, playerName}
 }
 
 const gameBoardMod = (function() {
-    
+
+    const playerOneName = document.getElementById('player-one-name')
+    const playerOneDisplayName = document.getElementById('player-one-display-name')
+    const playerOneForm = document.getElementById('player-one-form')
+    const playerOneButton = document.getElementById('player-one-submit-button')
+    playerOneButton.addEventListener('click', () => {
+        playerOneForm.classList.add('animated')
+        playerOneDisplayName.textContent = playerOneName.value
+        playerOneDisplayName.classList.add('second-wrapper-animated')
+    })
+    const playerTwoName = document.getElementById('player-two-name')
+    const playerTwoDisplayName = document.getElementById('player-two-display-name')
+    const playerTwoForm = document.getElementById('player-two-form')
+    const playerTwoButton = document.getElementById('player-two-submit-button')
+    playerTwoButton.addEventListener('click', () => {
+        playerTwoForm.classList.add('animated')
+        playerTwoDisplayName.textContent = playerTwoName.value
+        playerTwoDisplayName.classList.add('second-wrapper-animated')
+    })
+
     const playerOne = playerTemplate(1)
     const playerTwo = playerTemplate(2)
     
