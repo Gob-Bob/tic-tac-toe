@@ -44,17 +44,38 @@ const gameBoardMod = (function() {
     }
 
     const boardDOM = document.getElementById('game_grid_container')
-    const renderBoard = (function(array) {
-        array.forEach(item => {
+    // const render = (function(array) {
+    //     array.forEach(item => {
+            
+    //         // Clear the DOM of the old board (probably set array to empty first?)
+            
+    //         const boardSlot = document.createElement('button')
+    //         boardSlot.textContent = item
+    //         boardSlot.classList.add('game_slot')
+    //         boardDOM.appendChild(boardSlot)
+    //     })
+    // })(boardObj.boardArray)
+
+    const removeChildNodes = (parent) => {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild)
+        }
+    }
+
+    const render = () => {
+        board = boardObj.boardArray
+        removeChildNodes(boardDOM)
+        board.forEach(element => {
             const boardSlot = document.createElement('button')
-            boardSlot.textContent = item
+            boardSlot.textContent = element
             boardSlot.classList.add('game_slot')
             boardDOM.appendChild(boardSlot)
         })
-    })(boardObj.boardArray)
+    }
+    render()
 
     let count = 0
-    const getPlayerTurn = () => {
+    const getPlayerSymbol = () => {
         if (count % 2 == 0) {
             return playerOne.playerSym
         } else {
@@ -62,20 +83,18 @@ const gameBoardMod = (function() {
         }
     }
 
-    const playerPlaceMove = (slot, position) => {
-        if (slot.textContent == '') {
-            slot.textContent = getPlayerTurn()
-            // Function adds player's symbol into appropriate spot in array
-            // Clear the DOM of the old board
-            // Run board render function to update
-            count++
+    const playerPlaceMove = (array, index) => {
+        if (array[index] == '') {
+            array[index] = getPlayerSymbol()
         }
+        render()
+        count++
     }
             
     const gameSlots = document.querySelectorAll('.game_slot')
-    gameSlots.forEach((slot, position) => {
+    gameSlots.forEach((slot, index) => {
         slot.addEventListener('click', () => {
-            playerPlaceMove(slot, position)
+            playerPlaceMove(boardObj.boardArray, index)
             // Access the gameboard method to check for a win
             // Rerender the board to update moves onto the DOM (renderBoard function)
         })
