@@ -37,13 +37,40 @@ const gameBoardMod = (function() {
         playerTwo = playerTemplate(2, playerTwoName.value)
     })
 
-    const boardObj = {
-        boardArray: ['', '', '', '', '', '', '', '', '']
-        // Check win function
-            // Check for horizontal wins
-            // Check for vertical wins
-            // Check for diagonal wins
-            // Check for a draw
+    let boardArray = ['', '', '', '', '', '', '', '', '']
+
+    const horizontalMatch = (array) => {
+        if (array[0] == 'X' && array[1] == 'X' && array[2] == 'X') {
+            return 'xWin'
+        } else if (array[3] == 'X' && array[4] == 'X' && array[5] == 'X') {
+            return 'xWin'
+        } else if (array[6] == 'X' && array[7] == 'X' && array[8] == 'X') {
+            return 'xWin'
+        }
+        if (array[0] == 'O' && array[1] == 'O' && array[2] == 'O') {
+            return 'oWin'
+        } else if (array[3] == 'O' && array[4] == 'O' && array[5] == 'O') {
+            return 'oWin'
+        } else if (array[6] == 'O' && array[7] == 'O' && array[8] == 'O') {
+            return 'oWin'
+        }
+    }
+    const verticalMatch = (array) => {
+
+    }
+    const diagonalMatch = (array) => {
+
+    }
+    const checkWin = (array) => {
+        if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
+            console.log('Player 1 Winner')
+        } 
+        if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
+            console.log('Player 2 Winner')
+        } 
+        else {
+            // Draw result
+        }
     }
 
     const boardDOM = document.getElementById('game_grid_container')
@@ -54,7 +81,7 @@ const gameBoardMod = (function() {
         }
     }
     
-    const board = boardObj.boardArray
+    const board = boardArray
     const render = () => {
 
         removeChildNodes(boardDOM)
@@ -69,8 +96,8 @@ const gameBoardMod = (function() {
         const gameSlots = document.querySelectorAll('.game_slot')
         gameSlots.forEach((slot, index) => {
             slot.addEventListener('click', () => {
-                playerPlaceMove(boardObj.boardArray, index, count)
-                // Access the gameboard method to check for a win
+                playerPlaceMove(boardArray, index, count)
+                checkWin(boardArray)
             })
         })
 
