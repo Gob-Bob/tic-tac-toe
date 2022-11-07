@@ -85,7 +85,7 @@ fieldset {
     animation-fill-mode: forwards;
 }
 #restart_button {
-    animation: 1s ease-in 0s 1 bottomToMiddle;
+    /* animation: 1s ease-in 0s 1 bottomToMiddle; */
     
     font-size: 15px;
     font-weight: 600;
@@ -106,14 +106,14 @@ fieldset {
     height: 700px;
 }
 .game_slot {
-    animation: 1s ease-in 0s 1 fadeIn;
+    /* animation: 1s ease-in 0s 1 fadeIn; */
     
     padding: 10px;
     font-size: 100px;
     border: 5px solid black;
     border-radius: 75px;
-    transition-duration: .5s;
-    transition-timing-function: ease-in-out;
+    /* transition-duration: .5s;
+    transition-timing-function: ease-in-out; */
 }
 .game_slot:hover {
     background-color: rgb(163, 163, 163);
