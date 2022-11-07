@@ -92,7 +92,7 @@ fieldset {
     border-radius: 15px;
     padding: 8px 18px;
 }
-.game_grid_container {
+#game_grid_container {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
