@@ -56,10 +56,32 @@ const gameBoardMod = (function() {
         }
     }
     const verticalMatch = (array) => {
-
+        if (array[0] == 'X' && array[3] == 'X' && array[6] == 'X') {
+            return 'xWin'
+        } else if (array[1] == 'X' && array[4] == 'X' && array[7] == 'X') {
+            return 'xWin'
+        } else if (array[2] == 'X' && array[5] == 'X' && array[8] == 'X') {
+            return 'xWin'
+        }
+        if (array[0] == 'O' && array[3] == 'O' && array[6] == 'O') {
+            return 'oWin'
+        } else if (array[1] == 'O' && array[4] == 'O' && array[7] == 'O') {
+            return 'oWin'
+        } else if (array[2] == 'O' && array[5] == 'O' && array[8] == 'O') {
+            return 'oWin'
+        }
     }
     const diagonalMatch = (array) => {
-
+        if (array[0] == 'X' && array[4] == 'X' && array[8] == 'X') {
+            return 'xWin'
+        } else if (array[2] == 'X' && array[4] == 'X' && array[6] == 'X') {
+            return 'xWin'
+        } 
+        if (array[0] == 'O' && array[4] == 'O' && array[8] == 'O') {
+            return 'oWin'
+        } else if (array[2] == 'O' && array[4] == 'O' && array[6] == 'O') {
+            return 'oWin'
+        } 
     }
     const checkWin = (array) => {
         if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
