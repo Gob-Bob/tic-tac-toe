@@ -112,12 +112,23 @@ const gameBoardMod = (function() {
         winnerDOM.textContent = "Winner!"
         player.appendChild(winnerDOM)
     }
+    const updateDrawDOM = (playerOne, playerTwo) => {
+        const drawDOMOne = document.createElement('div')
+        const drawDOMTwo = document.createElement('div')
+        drawDOMOne.textContent = "Draw"
+        drawDOMTwo.textContent = "Draw"
+        playerOne.appendChild(drawDOMOne)
+        playerTwo.appendChild(drawDOMTwo)
+    }
+    const disableGameSlots = () => {
+
+    }
 
     const checkWin = (array) => {
         const playerOneDOM = document.getElementById('player-one-display-name')
         const playerTwoDOM = document.getElementById('player-two-display-name')
         if (draw(array)) {
-            window.alert('Draw')
+            updateDrawDOM(playerOneDOM, playerTwoDOM)
             return true
         } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
             updateWinnerDOM(playerOneDOM)
