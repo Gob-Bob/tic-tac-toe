@@ -15,7 +15,7 @@ const gameBoardMod = (function() {
     const playerOneDisplayName = document.getElementById('player-one-display-name')
     const playerOneForm = document.getElementById('player-one-form')
     const playerOneButton = document.getElementById('player-one-submit-button')
-    playerOneDisplayName.textContent = '^'
+    playerOneDisplayName.textContent = '.'
     playerOneButton.addEventListener('click', () => {
         playerOneForm.classList.add('animated')
         playerOneDisplayName.textContent = playerOneName.value
@@ -29,7 +29,7 @@ const gameBoardMod = (function() {
     const playerTwoDisplayName = document.getElementById('player-two-display-name')
     const playerTwoForm = document.getElementById('player-two-form')
     const playerTwoButton = document.getElementById('player-two-submit-button')
-    playerTwoDisplayName.textContent = '^'
+    playerTwoDisplayName.textContent = ''
     playerTwoButton.addEventListener('click', () => {
         playerTwoForm.classList.add('animated')
         playerTwoDisplayName.textContent = playerTwoName.value
@@ -55,6 +55,7 @@ const gameBoardMod = (function() {
             return 'oWin'
         }
     }
+    
     const verticalMatch = (array) => {
         if (array[0] == 'X' && array[3] == 'X' && array[6] == 'X') {
             return 'xWin'
@@ -71,6 +72,7 @@ const gameBoardMod = (function() {
             return 'oWin'
         }
     }
+
     const diagonalMatch = (array) => {
         if (array[0] == 'X' && array[4] == 'X' && array[8] == 'X') {
             return 'xWin'
@@ -83,6 +85,7 @@ const gameBoardMod = (function() {
             return 'oWin'
         } 
     }
+
     const draw = array => {
         let count = 9
         for (let i = 0; i < array.length; i++) {
@@ -94,9 +97,9 @@ const gameBoardMod = (function() {
             }
         }
     }
+
     const checkWin = (array) => {
         if (draw(array)) {
-            // If every slot is filled and there is still no winner, result in a draw
             console.log('Draw')
         } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
             console.log('Player 1 Winner')
