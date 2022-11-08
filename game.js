@@ -28,7 +28,7 @@ const gameBoardMod = (function() {
         playerOneDisplayName.classList.add('second-wrapper-animated')
         playerOne = playerTemplate(1, playerOneName.value)
         checkBothPlayerNames(playerOneName.value, playerTwoName.value)
-    
+        playerOneNameDOM.style.backgroundColor = "gray"
     })
 
     // Set up player 2
