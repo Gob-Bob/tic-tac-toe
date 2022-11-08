@@ -121,7 +121,10 @@ const gameBoardMod = (function() {
         playerTwo.appendChild(drawDOMTwo)
     }
     const disableGameSlots = () => {
-
+        const gameSlots = document.querySelectorAll('.game_slot')
+        gameSlots.forEach((slot) => {
+            slot.disabled = true
+        })
     }
 
     const checkWin = (array) => {
@@ -129,12 +132,15 @@ const gameBoardMod = (function() {
         const playerTwoDOM = document.getElementById('player-two-display-name')
         if (draw(array)) {
             updateDrawDOM(playerOneDOM, playerTwoDOM)
+            disableGameSlots()
             return true
         } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
             updateWinnerDOM(playerOneDOM)
+            disableGameSlots()
             return true
         } else if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
             updateWinnerDOM(playerTwoDOM)
+            disableGameSlots()
             return true
         }
         return false
