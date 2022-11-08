@@ -107,15 +107,23 @@ const gameBoardMod = (function() {
         }
     }
 
+    const updateWinnerDOM = (player) => {
+        const winnerDOM = document.createElement('div')
+        winnerDOM.textContent = "Winner!"
+        player.appendChild(winnerDOM)
+    }
+
     const checkWin = (array) => {
+        const playerOneDOM = document.getElementById('player-one-display-name')
+        const playerTwoDOM = document.getElementById('player-two-display-name')
         if (draw(array)) {
             window.alert('Draw')
             return true
         } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
-            window.alert('Player 1 Winner')
+            updateWinnerDOM(playerOneDOM)
             return true
         } else if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
-            window.alert('Player 2 Winner')
+            updateWinnerDOM(playerTwoDOM)
             return true
         }
         return false
