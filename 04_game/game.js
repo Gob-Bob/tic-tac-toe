@@ -13,6 +13,7 @@ const gameBoardMod = (function() {
         if (playerOneName != '' && playerTwoName != '') {
             render()
         }
+        highlightPlayerTurn(count)
     }
 
     // Set up player 1
@@ -155,11 +156,24 @@ const gameBoardMod = (function() {
         }
     }
 
+    const highlightPlayerTurn = (num) => {
+        const playerOneNameDOM = document.getElementById('player-one-display-name')
+        const playerTwoNameDOM = document.getElementById('player-two-display-name')
+        if (num % 2 == 0) {
+            playerOneNameDOM.style.border = "1px solid black"
+            playerTwoNameDOM.style.border = "none"
+        } else {
+            playerTwoNameDOM.style.border = "1px solid black"
+            playerOneNameDOM.style.border = "none"
+        }
+    }
+
     const playerPlaceMove = (array, index, num) => {
         if (array[index] == '') {
             array[index] = getPlayerSymbol(num)
         }
         render()
         count++
+        highlightPlayerTurn(count)
     }
 })()
