@@ -83,15 +83,25 @@ const gameBoardMod = (function() {
             return 'oWin'
         } 
     }
+    const draw = array => {
+        let count = 9
+        for (let i = 0; i < array.length; i++) {
+            if (array[i] == 'X' || array[i] == 'O') {
+                count--
+            }
+            if (count == 0) {
+                return true
+            }
+        }
+    }
     const checkWin = (array) => {
-        if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
+        if (draw(array)) {
+            // If every slot is filled and there is still no winner, result in a draw
+            console.log('Draw')
+        } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
             console.log('Player 1 Winner')
-        } 
-        if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
+        } else if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
             console.log('Player 2 Winner')
-        } 
-        else {
-            // Draw result
         }
     }
 
