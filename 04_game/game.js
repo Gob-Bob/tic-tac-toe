@@ -13,7 +13,6 @@ const gameBoardMod = (function() {
         if (playerOneName != '' && playerTwoName != '') {
             render()
         }
-        highlightPlayerTurn(count)
     }
 
     // Set up player 1
@@ -29,6 +28,7 @@ const gameBoardMod = (function() {
         playerOneDisplayName.classList.add('second-wrapper-animated')
         playerOne = playerTemplate(1, playerOneName.value)
         checkBothPlayerNames(playerOneName.value, playerTwoName.value)
+    
     })
 
     // Set up player 2
@@ -109,12 +109,16 @@ const gameBoardMod = (function() {
 
     const checkWin = (array) => {
         if (draw(array)) {
-            console.log('Draw')
+            window.alert('Draw')
+            return true
         } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
-            console.log('Player 1 Winner')
+            window.alert('Player 1 Winner')
+            return true
         } else if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
-            console.log('Player 2 Winner')
+            window.alert('Player 2 Winner')
+            return true
         }
+        return false
     }
 
     const boardDOM = document.getElementById('game_grid_container')
@@ -140,40 +144,34 @@ const gameBoardMod = (function() {
         const gameSlots = document.querySelectorAll('.game_slot')
         gameSlots.forEach((slot, index) => {
             slot.addEventListener('click', () => {
-                playerPlaceMove(boardArray, index, count)
-                checkWin(boardArray)
+                if (!checkWin(boardArray)) {
+                    playerPlaceMove(boardArray, index, count)
+                    checkWin(boardArray)
+                }
             })
         })
-
     }
 
     let count = 0
-    const getPlayerSymbol = (num) => {
+    const playerOneNameDOM = document.getElementById('player-one-display-name')
+    const playerTwoNameDOM = document.getElementById('player-two-display-name')
+    const getPlayerSymbol = (num, playerOne, playerTwo, playerOneDOM, playerTwoDOM) => {
         if (num % 2 == 0) {
-            return playerOne.playerSym
+            playerOneDOM.style.backgroundColor = "white"
+            playerTwoDOM.style.backgroundColor = "gray"
+            return playerOne
         } else {
-            return playerTwo.playerSym
-        }
-    }
-
-    const highlightPlayerTurn = (num) => {
-        const playerOneNameDOM = document.getElementById('player-one-display-name')
-        const playerTwoNameDOM = document.getElementById('player-two-display-name')
-        if (num % 2 == 0) {
-            playerOneNameDOM.style.border = "1px solid black"
-            playerTwoNameDOM.style.border = "none"
-        } else {
-            playerTwoNameDOM.style.border = "1px solid black"
-            playerOneNameDOM.style.border = "none"
+            playerTwoDOM.style.backgroundColor = "white"
+            playerOneDOM.style.backgroundColor = "gray"
+            return playerTwo
         }
     }
 
     const playerPlaceMove = (array, index, num) => {
         if (array[index] == '') {
-            array[index] = getPlayerSymbol(num)
+            array[index] = getPlayerSymbol(num, playerOne.playerSym, playerTwo.playerSym, playerOneNameDOM, playerTwoNameDOM)
         }
-        render()
         count++
-        highlightPlayerTurn(count)
+        render()
     }
 })()
