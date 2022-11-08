@@ -9,6 +9,12 @@ const playerTemplate = (playerNum, playerName) => {
 
 const gameBoardMod = (function() {
     
+    const checkBothPlayerNames = (playerOneName, playerTwoName) => {
+        if (playerOneName != '' && playerTwoName != '') {
+            render()
+        }
+    }
+
     // Set up player 1
     let playerOne = playerTemplate(1)
     const playerOneName = document.getElementById('player-one-name')
@@ -21,6 +27,7 @@ const gameBoardMod = (function() {
         playerOneDisplayName.textContent = playerOneName.value
         playerOneDisplayName.classList.add('second-wrapper-animated')
         playerOne = playerTemplate(1, playerOneName.value)
+        checkBothPlayerNames(playerOneName.value, playerTwoName.value)
     })
 
     // Set up player 2
@@ -35,6 +42,7 @@ const gameBoardMod = (function() {
         playerTwoDisplayName.textContent = playerTwoName.value
         playerTwoDisplayName.classList.add('second-wrapper-animated')
         playerTwo = playerTemplate(2, playerTwoName.value)
+        checkBothPlayerNames(playerOneName.value, playerTwoName.value)
     })
 
     let boardArray = ['', '', '', '', '', '', '', '', '']
@@ -137,7 +145,6 @@ const gameBoardMod = (function() {
         })
 
     }
-    render()
 
     let count = 0
     const getPlayerSymbol = (num) => {
