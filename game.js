@@ -10,10 +10,15 @@ const playerTemplate = (playerNum, playerName) => {
 const gameBoardMod = (function() {
     
     const checkBothPlayerNames = (playerOneName, playerTwoName) => {
-        if (playerOneName != '' && playerTwoName != '') {
-            render()
+        if (playerOneName == '' || playerTwoName == '') {
+            window.alert('Input player names.')
+            return false
         }
+        return true
     }
+
+    let firstButtonClicked = false
+    let secondButtonClicked = false
 
     // Set up player 1
     let playerOne = playerTemplate(1)
@@ -23,12 +28,17 @@ const gameBoardMod = (function() {
     const playerOneButton = document.getElementById('player-one-submit-button')
     playerOneDisplayName.textContent = '.'
     playerOneButton.addEventListener('click', () => {
-        playerOneForm.classList.add('animated')
-        playerOneDisplayName.textContent = playerOneName.value
-        playerOneDisplayName.classList.add('second-wrapper-animated')
-        playerOne = playerTemplate(1, playerOneName.value)
-        playerOneNameDOM.style.backgroundColor = "gray"
-        checkBothPlayerNames(playerOneName.value, playerTwoName.value)
+        if (checkBothPlayerNames(playerOneName.value, playerTwoName.value)) {
+            playerOneForm.classList.add('animated')
+            playerOneDisplayName.textContent = playerOneName.value
+            playerOneDisplayName.classList.add('second-wrapper-animated')
+            playerOne = playerTemplate(1, playerOneName.value)
+            playerOneNameDOM.style.backgroundColor = "gray"
+            firstButtonClicked = true
+            if (firstButtonClicked && secondButtonClicked) {
+                render()
+            }
+        }
     })
 
     // Set up player 2
@@ -39,11 +49,16 @@ const gameBoardMod = (function() {
     const playerTwoButton = document.getElementById('player-two-submit-button')
     playerTwoDisplayName.textContent = ''
     playerTwoButton.addEventListener('click', () => {
-        playerTwoForm.classList.add('animated')
-        playerTwoDisplayName.textContent = playerTwoName.value
-        playerTwoDisplayName.classList.add('second-wrapper-animated')
-        playerTwo = playerTemplate(2, playerTwoName.value)
-        checkBothPlayerNames(playerOneName.value, playerTwoName.value)
+        if (checkBothPlayerNames(playerOneName.value, playerTwoName.value)) {
+            playerTwoForm.classList.add('animated')
+            playerTwoDisplayName.textContent = playerTwoName.value
+            playerTwoDisplayName.classList.add('second-wrapper-animated')
+            playerTwo = playerTemplate(2, playerTwoName.value)
+            secondButtonClicked = true
+            if (firstButtonClicked && secondButtonClicked) {
+                render()
+            }
+        }
     })
 
     let boardArray = ['', '', '', '', '', '', '', '', '']
@@ -136,14 +151,20 @@ const gameBoardMod = (function() {
         if (draw(array)) {
             updateDrawDOM(playerOneDOM, playerTwoDOM)
             disableGameSlots()
+            playerOneDOM.style.backgroundColor = "white"
+            playerTwoDOM.style.backgroundColor = "white"
             return true
         } else if (horizontalMatch(array) == 'xWin' || verticalMatch(array) == 'xWin' || diagonalMatch(array) == 'xWin') {
             updateWinnerDOM(playerOneDOM)
             disableGameSlots()
+            playerOneDOM.style.backgroundColor = "white"
+            playerTwoDOM.style.backgroundColor = "white"
             return true
         } else if (horizontalMatch(array) == 'oWin' || verticalMatch(array) == 'oWin' || diagonalMatch(array) == 'oWin') {
             updateWinnerDOM(playerTwoDOM)
             disableGameSlots()
+            playerOneDOM.style.backgroundColor = "white"
+            playerTwoDOM.style.backgroundColor = "white"
             return true
         }
         return false
@@ -177,14 +198,6 @@ const gameBoardMod = (function() {
                 }
             })
         })
-    }
-
-    const removeFirstChildOnly = (node) => {
-        if (node.hasChildNodes()) {
-            node.removeChild(node.children[0])
-        } else {
-            return
-        }
     }
 
     const restartButton = (() => {
