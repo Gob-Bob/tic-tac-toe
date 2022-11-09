@@ -154,11 +154,10 @@ const gameBoardMod = (function() {
         }
     }
     
-    const board = boardArray
     const render = () => {
 
         removeChildNodes(boardDOM)
-        board.forEach(element => {
+        boardArray.forEach(element => {
             const button = document.createElement('button')
             button.textContent = element
             button.classList.add('game_slot')
@@ -176,6 +175,16 @@ const gameBoardMod = (function() {
             })
         })
     }
+
+    const restartButton = () => {
+        const button = document.getElementById('restart_button')
+        button.addEventListener('click', () => {
+            boardArray = ['', '', '', '', '', '', '', '', '']
+            // Make sure player 1 starts again
+            render()
+        })
+    }
+    restartButton()
 
     let count = 0
     const playerOneNameDOM = document.getElementById('player-one-display-name')
@@ -199,4 +208,5 @@ const gameBoardMod = (function() {
         count++
         render()
     }
+
 })()
