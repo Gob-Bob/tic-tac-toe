@@ -27,8 +27,8 @@ const gameBoardMod = (function() {
         playerOneDisplayName.textContent = playerOneName.value
         playerOneDisplayName.classList.add('second-wrapper-animated')
         playerOne = playerTemplate(1, playerOneName.value)
-        checkBothPlayerNames(playerOneName.value, playerTwoName.value)
         playerOneNameDOM.style.backgroundColor = "gray"
+        checkBothPlayerNames(playerOneName.value, playerTwoName.value)
     })
 
     // Set up player 2
@@ -109,12 +109,15 @@ const gameBoardMod = (function() {
 
     const updateWinnerDOM = (player) => {
         const winnerDOM = document.createElement('div')
+        winnerDOM.classList.add('winner')
         winnerDOM.textContent = "Winner!"
         player.appendChild(winnerDOM)
     }
     const updateDrawDOM = (playerOne, playerTwo) => {
         const drawDOMOne = document.createElement('div')
         const drawDOMTwo = document.createElement('div')
+        drawDOMOne.classList.add('draw')
+        drawDOMTwo.classList.add('draw')
         drawDOMOne.textContent = "Draw"
         drawDOMTwo.textContent = "Draw"
         playerOne.appendChild(drawDOMOne)
@@ -176,15 +179,20 @@ const gameBoardMod = (function() {
         })
     }
 
-    const restartButton = () => {
+    const removeFirstChildOnly = (node) => {
+        if (node.hasChildNodes()) {
+            node.removeChild(node.children[0])
+        } else {
+            return
+        }
+    }
+
+    const restartButton = (() => {
         const button = document.getElementById('restart_button')
         button.addEventListener('click', () => {
-            boardArray = ['', '', '', '', '', '', '', '', '']
-            // Make sure player 1 starts again
-            render()
+            window.location.reload()
         })
-    }
-    restartButton()
+    })()
 
     let count = 0
     const playerOneNameDOM = document.getElementById('player-one-display-name')
